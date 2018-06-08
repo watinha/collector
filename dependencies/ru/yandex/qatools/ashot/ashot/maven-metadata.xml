@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>ru.yandex.qatools.ashot</groupId>
+  <artifactId>ashot</artifactId>
+  <versioning>
+    <versions>
+      <version>1.5.5-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20171011151355</lastUpdated>
+  </versioning>
+</metadata>
