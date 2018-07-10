@@ -95,14 +95,15 @@ public class DesktopBrowser implements Browsers {
         }
         System.out.println(dpr);
         executor.executeScript(
-            "(function () {" +
+            "return (function () {" +
             "    var all = document.querySelectorAll(\"*\");" +
             "    for (var i = 0; i < all.length; i++) {" +
             "    	var s = window.getComputedStyle(all[i], null);" +
-            "       if (s.position == \"fixed\"){" +
-            "            all[i].style.position = \"absolute\";" +
+            "       if (s.position.search(\"fixed\") >= 0){" +
+            "            all[i].style.cssText = \"position:absolute !important\";" +
             "       }" +
             "    }" +
+            "    return \"\";" +
             "})();"
         );
 

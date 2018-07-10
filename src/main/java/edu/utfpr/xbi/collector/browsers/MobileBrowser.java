@@ -65,7 +65,8 @@ public class MobileBrowser implements Browsers {
         driver.get(url);
 
         Thread.sleep(7000);
-        if (!this.device.equals("Android - MotoG4") && !this.device.equals("Samsung - Galaxy Tab S2"))
+        if (!this.device.equals("Android - MotoG4") && !this.device.equals("Samsung - Galaxy Tab S2") &&
+                !this.device.equals("Android - MotoZ2"))
             executor.executeScript(IOUtils.toString(Thread.currentThread().getContextClassLoader()
                         .getResourceAsStream("js/jquery.js"), StandardCharsets.UTF_8));
 
@@ -88,19 +89,18 @@ public class MobileBrowser implements Browsers {
         System.out.println(deviceWidth);
         System.out.println(viewportWidth);
         System.out.println(dpr);
-        if (!this.device.equals("Android - MotoG4") && !this.device.equals("Samsung - Galaxy Tab S2")) {
-            executor.executeScript(
-                "(function () {" +
-                "    var all = document.querySelectorAll(\"*\");" +
-                "    for (var i = 0; i < all.length; i++) {" +
-                "    	var s = window.getComputedStyle(all[i], null);" +
-                "       if (s.position == \"fixed\"){" +
-                "            all[i].style.position = \"absolute\";" +
-                "       }" +
-                "    }" +
-                "})();"
-            );
-        }
+        executor.executeScript(
+            "return (function () {" +
+            "    var all = document.querySelectorAll(\"*\");" +
+            "    for (var i = 0; i < all.length; i++) {" +
+            "    	var s = window.getComputedStyle(all[i], null);" +
+            "       if (s.position.search(\"fixed\") >= 0){" +
+            "            all[i].style.cssText = \"position:absolute !important;\";" +
+            "       }" +
+            "    }" +
+            "    return \"\";" +
+            "})();"
+        );
 
         AShot ashot = new AShot().shootingStrategy(
 			ShootingStrategies.viewportRetina(100, this.header, 0, dpr))
