@@ -67,7 +67,7 @@ public class BrowserRow {
     }
 
     public File getScreenshot () {
-        if (this.childsNumber != 0)
+        if (this.childsNumber > 20)
             return null;
 
         int x = this.getX(),
