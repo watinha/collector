@@ -20,9 +20,9 @@ public class Merger {
         Comparator c2 = new ChiSquaredComparator();
 
         String [] comparisons = {
-              "ipadAir2-galaxyTabS2"
-//            "chrome_win-firefox_win",
-//            "chrome_win-ie",
+//              "ipadAir2-galaxyTabS2"
+            "chrome_win-firefox_win",
+            "chrome_win-ie"
 //            "iphonese-motog4",
 //            "iphonese-iphone8",
 //            "iphonese-iphone8plus"
