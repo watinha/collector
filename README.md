@@ -7,6 +7,7 @@ This ARFF file can be used for classifying DOM elements which present incompatib
 This project was built using the following technologies:
 * Selenium WebDriver - for crawling webpages
 * Appium - for automatizing the crawling process in mobile browsers
+* AShot - for taking full page screenshots on desktop and mobile browsers
 * OpenCV - for running screenshot comparison using Chi-squared distance.
 * jpHash - for further comparing screenshots.
 

@@ -67,6 +67,8 @@
           <groupId>sun.jvm.hotspot</groupId>
           <artifactId>sa-jdi</artifactId>
           <version>1.0</version>
+          <scope>system</scope>
+          <systemPath>${project.basedir}/dependencies/sa-jdi.jar</systemPath>
       </dependency>
   </dependencies>
 </project>
