@@ -73,6 +73,16 @@ public class BrowserConfigurations {
 							 header, "Android - MotoG4", new WebDriverCoordsProvider(), -1f);
     }
 
+	public static Browsers motoZ2(String appium_uri, int header, float dpr)
+			throws Exception {
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability("deviceName", "Android Emulator");
+        capabilities.setCapability("browserName", "Chrome");
+		return new MobileBrowser(capabilities, appium_uri, "results/motoz2/",
+							 header, "Android - MotoZ2", new WebDriverCoordsProvider(), -1f);
+    }
+
     public static Browsers iphoneSE (String appium_uri, int header, float dpr)
             throws Exception {
 		DesiredCapabilities capabilities = new DesiredCapabilities();

@@ -265,11 +265,89 @@ public class BrowserRowTest {
     }
 
     @Test
-    public void testGetScreenshotWithNoChildNodes () throws Exception {
-        String row = "somefolder/,http://abobrinha.com,1,a,Android 2.0 - Chrome,220,1013,19,90,8,993,1080,360,3.0,10,12,/body[1]/div[1]";
+    public void testGetScreenshotWith10Childs () throws Exception {
+        String row = "somefolder/,http://abobrinha.com,1,a,Android 2.0 - Chrome,113,12,49,100,98,7,960,320,1.8,10,133,/body[1]/div[1]";
         BrowserRow r = spy(BrowserRow.readRow(row));
+        BufferedImage completeImage = mock(BufferedImage.class),
+                      targetScreenshot = mock(BufferedImage.class);
+        File f = mock(File.class),
+             result;
+
         assertEquals("http://abobrinha.com", r.getURL());
         assertEquals(10, r.getChildsNumber());
+
+        doReturn(1080).when(completeImage).getWidth();
+        doReturn(1080).when(completeImage).getHeight();
+        doReturn(completeImage).when(r)._getCompleteScreenshot();
+        doReturn(targetScreenshot).when(completeImage).getSubimage(113, 12, 100, 49);
+        doNothing().when(r)._saveScreenshot(targetScreenshot, "somefolder/1.png");
+        doReturn(f).when(r).getFile(anyString());
+
+        result = r.getScreenshot();
+        assertNull(result);
+        //assertEquals(f, result);
+        //verify(r).getFile("somefolder/1.png");
+        //verify(r)._saveScreenshot(targetScreenshot, "somefolder/1.png");
+    }
+
+    @Test
+    public void testGetScreenshotWith15Childs () throws Exception {
+        String row = "somefolder/,http://abobrinha.com,1,a,Android 2.0 - Chrome,113,12,49,100,98,7,960,320,1.8,15,133,/body[1]/div[1]";
+        BrowserRow r = spy(BrowserRow.readRow(row));
+        BufferedImage completeImage = mock(BufferedImage.class),
+                      targetScreenshot = mock(BufferedImage.class);
+        File f = mock(File.class),
+             result;
+
+        assertEquals("http://abobrinha.com", r.getURL());
+        assertEquals(15, r.getChildsNumber());
+
+        doReturn(1080).when(completeImage).getWidth();
+        doReturn(1080).when(completeImage).getHeight();
+        doReturn(completeImage).when(r)._getCompleteScreenshot();
+        doReturn(targetScreenshot).when(completeImage).getSubimage(113, 12, 100, 49);
+        doNothing().when(r)._saveScreenshot(targetScreenshot, "somefolder/1.png");
+        doReturn(f).when(r).getFile(anyString());
+
+        result = r.getScreenshot();
+        assertNull(result);
+        //assertEquals(f, result);
+        //verify(r).getFile("somefolder/1.png");
+        //verify(r)._saveScreenshot(targetScreenshot, "somefolder/1.png");
+    }
+
+    @Test
+    public void testGetScreenshotWith20Childs () throws Exception {
+        String row = "somefolder/,http://abobrinha.com,1,a,Android 2.0 - Chrome,113,12,49,100,98,7,960,320,1.8,20,133,/body[1]/div[1]";
+        BrowserRow r = spy(BrowserRow.readRow(row));
+        BufferedImage completeImage = mock(BufferedImage.class),
+                      targetScreenshot = mock(BufferedImage.class);
+        File f = mock(File.class),
+             result;
+
+        assertEquals("http://abobrinha.com", r.getURL());
+        assertEquals(20, r.getChildsNumber());
+
+        doReturn(1080).when(completeImage).getWidth();
+        doReturn(1080).when(completeImage).getHeight();
+        doReturn(completeImage).when(r)._getCompleteScreenshot();
+        doReturn(targetScreenshot).when(completeImage).getSubimage(113, 12, 100, 49);
+        doNothing().when(r)._saveScreenshot(targetScreenshot, "somefolder/1.png");
+        doReturn(f).when(r).getFile(anyString());
+
+        result = r.getScreenshot();
+        assertNull(result);
+        //assertEquals(f, result);
+        //verify(r).getFile("somefolder/1.png");
+        //verify(r)._saveScreenshot(targetScreenshot, "somefolder/1.png");
+    }
+
+    @Test
+    public void testGetScreenshotWith21Childs () throws Exception {
+        String row = "somefolder/,http://abobrinha.com,1,a,Android 2.0 - Chrome,220,1013,19,90,8,993,1080,360,3.0,21,12,/body[1]/div[1]";
+        BrowserRow r = spy(BrowserRow.readRow(row));
+        assertEquals("http://abobrinha.com", r.getURL());
+        assertEquals(21, r.getChildsNumber());
         assertNull(r.getScreenshot());
     }
 }

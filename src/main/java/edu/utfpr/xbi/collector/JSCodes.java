@@ -45,4 +45,38 @@ public class JSCodes {
             "parent = target.parentElement;" +
         "};" +
         "return xpath;";
+
+    public final static String COLLECTOR_JS =
+        "var path = arguments[0]," +
+        "    url = arguments[1]," +
+        "    browser = arguments[2]," +
+        "    deviceWidth = arguments[3]," +
+        "    viewportWidth = arguments[4]," +
+        "    dpi = arguments[5]," +
+        "    index = arguments[6]," +
+        "    max = window.elements.length;" +
+        "function getXPath (target) {" +
+        "   var xpath = '', tagName, parent = target.parentElement," +
+        "       index, children;" +
+        "   while (parent != null) {" +
+        "       tagName = target.tagName.toLowerCase();" +
+        "       children = [].slice.call(parent.children);" +
+        "       index = children.indexOf(target) + 1;" +
+        "       xpath = '/' + tagName + '[' + index + ']' + xpath;" +
+        "       target = parent;" +
+        "       parent = target.parentElement;" +
+        "   };" +
+        "   return xpath;" +
+        "}" +
+        "window.rows = [];" +
+        "for (var i = (max - 1); i >= 0; i--){" +
+        "   var target = window.elements[i]," +
+        "       parent = target.parentElement," +
+        "       tagName = (target.tagName ? target.tagName.toUpperCase() : '');" +
+        "   if (tagName && (tagName !== 'SCRIPT' && tagName !== 'STYLE' && tagName !== 'LINK' && tagName !== 'NOSCRIPT' && parseInt($(target).outerWidth()) !== 0 && parseInt($(target).outerHeight()) !== 0) && $(target).is(':visible')) {" +
+        "       var row = path + ',' + url + ',' + i + ',' + target.tagName + ',' + browser + ',' + parseInt($(target).offset().left) + ',' + parseInt($(target).offset().top) + ',' + parseInt($(target).outerHeight()) + ',' + parseInt($(target).outerWidth()) + ',' + parseInt($(parent).offset().left) + ',' + parseInt($(parent).offset().top) + ',' + deviceWidth + ',' + viewportWidth + ',' + dpi + ',' + (target.querySelectorAll('*').length) + ',' + target.innerHTML.length + ',' + getXPath(target);" +
+        "       window.rows.push(row);" +
+        "   }" +
+        "}" +
+        "return window.rows.join('\\n');";
 }

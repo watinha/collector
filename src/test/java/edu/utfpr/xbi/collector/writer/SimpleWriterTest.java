@@ -1,5 +1,7 @@
 package edu.utfpr.xbi.collector.writer;
 
+import edu.utfpr.xbi.collector.JSCodes;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +12,7 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.JavascriptExecutor;
 
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
@@ -112,6 +115,30 @@ public class SimpleWriterTest {
         SimpleWriter writer = new SimpleWriter(path, url, deviceWidth, viewportWidth, dpi, "opera");
         doThrow(new WebDriverException()).when(target).findElements(By.cssSelector("*"));
         writer.saveWebElement(driver, target, parent);
+    }
+    @Test
+    public void test_saveAllJS_should_call_executor_with_collect_script () throws Exception {
+        String path = "r/",
+               url = "pepino.org/";
+        int deviceWidth = 1080,
+            viewportWidth = 360;
+        float dpi = 3;
+        SimpleWriter writer = spy(new SimpleWriter(path, url, deviceWidth, viewportWidth, dpi, "opera"));
+        JavascriptExecutor executor_mock = mock(JavascriptExecutor.class);
+        String script_result = "the pretty dataset to be used...";
+        doReturn(500).when(executor_mock).executeScript(
+                JSCodes.QUERY_ALL_ELEMENTS);
+        doReturn(script_result).when(executor_mock).executeScript(
+                JSCodes.COLLECTOR_JS, path, url, "opera", deviceWidth, viewportWidth, dpi, 0);
+        doNothing().when(writer)._saveData(script_result);
+
+        writer.setExecutor(executor_mock);
+        writer.saveAllJS();
+
+        verify(executor_mock).executeScript(JSCodes.QUERY_ALL_ELEMENTS);
+        verify(executor_mock).executeScript(
+                JSCodes.COLLECTOR_JS, path, url, "opera", deviceWidth, viewportWidth, dpi, 0);
+        verify(writer)._saveData(script_result);
     }
 }
 

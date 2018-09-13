@@ -25,6 +25,7 @@ public class SimpleWriter implements Writer {
     private String path;
     private String url;
     private FileWriter writer = null;
+    private int size = 0;
     private int count = 1;
     private AShot ashot;
     private int deviceWidth;
@@ -102,6 +103,15 @@ public class SimpleWriter implements Writer {
                        this.path, this.url, (this.count++), tagName, this.browser,
                        x, y, height, width, parentX, parentY, this.deviceWidth,
                        this.viewportWidth, this.dpi, childsNumber, text.length(), xpath));
+    }
+
+    public void saveAllJS () throws IOException {
+        int i = 0;
+        this.size = Integer.parseInt(this.executor.executeScript(JSCodes.QUERY_ALL_ELEMENTS).toString());
+        String result = this.executor.executeScript(
+               JSCodes.COLLECTOR_JS, this.path, this.url, this.browser,
+               this.deviceWidth, this.viewportWidth, this.dpi, i).toString();
+        this._saveData(result);
     }
 
     public void _saveCompleteScreenshot (BufferedImage image, String path)

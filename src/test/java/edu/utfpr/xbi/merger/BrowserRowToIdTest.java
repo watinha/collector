@@ -25,6 +25,7 @@ public class BrowserRowToIdTest {
             { "/body[2]/div[13]/span[1]", new BigInteger("21301") }, // 20000 + 1300 + 1
             { "/body[2]/div[6]/footer[1]/div[1]/div[1]/address[5]/p[1]/small[1]/a[1]", new BigInteger("20601010105010101") },
             { "/body[2]/g-raised-button[2]", new BigInteger("202") },
+            { "/body[2]/g:ratingbadge[5]", new BigInteger("205") },
         });
     }
 

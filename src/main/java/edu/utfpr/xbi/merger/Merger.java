@@ -9,6 +9,7 @@ import edu.utfpr.xbi.merger.image.Comparator;
 import edu.utfpr.xbi.merger.image.ImageDiffComparator;
 import edu.utfpr.xbi.merger.BrowserMerger;
 import edu.utfpr.xbi.merger.image.ChiSquaredComparator;
+import edu.utfpr.xbi.merger.image.PHashCompartor;
 
 import org.opencv.core.Core;
 
@@ -17,14 +18,16 @@ public class Merger {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         Comparator c = new ImageDiffComparator();
         Comparator c2 = new ChiSquaredComparator();
+        Comparator c3 = new PHashCompartor();
 
         String [] comparisons = {
-              "ipadAir2-galaxyTabS2"
+//            "ipadAir2-galaxyTabS2"
 //            "chrome_win-firefox_win",
 //            "chrome_win-ie",
-//            "iphonese-motog4",
+            "motog4-iphonese",
+            "motog4-iphone8plus",
+//            "motog4-motoz2",
 //            "iphonese-iphone8",
-//            "iphonese-iphone8plus"
 //            "chrome_win-opera_win",
 //            "chrome_win-chrome_mac",
 //            "chrome_win-firefox_mac",
@@ -45,6 +48,7 @@ public class Merger {
             BrowserMerger merger = new BrowserMerger(br1, br2);
             merger.setComparator1(c);
             merger.setComparator2(c2);
+            merger.setComparator3(c3);
             merger.setPrintWriter(writer);
             merger.merge();
             br1.close();

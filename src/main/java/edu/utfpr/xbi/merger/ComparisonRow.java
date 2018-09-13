@@ -5,6 +5,7 @@ public class ComparisonRow {
     private BrowserRow target;
     private double imageDiff;
     private double chiSquared;
+    private double phash;
 
     public ComparisonRow(BrowserRow base, BrowserRow target) {
         this.base = base;
@@ -15,6 +16,7 @@ public class ComparisonRow {
     public void setChiSquared(double chiSquared){
         this.chiSquared = chiSquared;
     }
+    public void setPHash(double phash){ this.phash = phash; }
 
     private String getURL() {
         if (this.base != null)
@@ -184,10 +186,18 @@ public class ComparisonRow {
         return this.base.getXPath();
     }
 
+    private String getBaseXPath () {
+        return (this.base == null ? null : this.base.getXPath());
+    }
+
+    private String getTargetXPath () {
+        return (this.target == null ? null : this.target.getXPath());
+    }
+
     public String toRow() {
         return String.format("%s,%d,%s,%d,%d,\"%s\",\"%s\",%s,%s,%.1f,%.1f,%s,%s," +
                              "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d," +
-                             "%.1f,%.1f,%d,%d,%d,%d,%s",
+                             "%.1f,%.1f,%d,%d,%d,%d,%s,%s,%s,%.1f",
                              this.getURL(), this.getId(), this.getTagName(),
                              this.getChildsNumber(), this.getTextLength(),
                              this.getBasePlatform(), this.getTargetPlatform(),
@@ -203,7 +213,8 @@ public class ComparisonRow {
                              this.imageDiff, this.chiSquared,
                              this.getBaseDeviceWidth(), this.getTargetDeviceWidth(),
                              this.getBaseViewportWidth(), this.getTargetViewportWidth(),
-                             this.getXPath());
+                             this.getXPath(),this.getBaseXPath(), this.getTargetXPath(),
+                             this.phash);
     }
 
     public static String header() {
@@ -240,6 +251,9 @@ public class ComparisonRow {
                "@ATTRIBUTE baseViewportWidth NUMERIC\n" +
                "@ATTRIBUTE targetViewportWidth NUMERIC\n" +
                "@ATTRIBUTE xpath STRING\n" +
+               "@ATTRIBUTE baseXpath STRING\n" +
+               "@ATTRIBUTE targetXpath STRING\n" +
+               "@ATTRIBUTE phash NUMERIC\n" +
                "@DATA";
     }
 }

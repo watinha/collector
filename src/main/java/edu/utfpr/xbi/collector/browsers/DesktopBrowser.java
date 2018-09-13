@@ -20,6 +20,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import edu.utfpr.xbi.collector.writer.SimpleWriter;
 import edu.utfpr.xbi.collector.BrowserCollector;
+import edu.utfpr.xbi.collector.BrowserCollectorJS;
 
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.coordinates.CoordsProvider;
@@ -70,10 +71,8 @@ public class DesktopBrowser implements Browsers {
 
         Thread.sleep(7000);
 
-        if (this.provider instanceof JqueryCoordsProvider) {
-            executor.executeScript(IOUtils.toString(Thread.currentThread().getContextClassLoader()
-                        .getResourceAsStream("js/jquery.js"), StandardCharsets.UTF_8));
-        }
+        executor.executeScript(IOUtils.toString(Thread.currentThread().getContextClassLoader()
+                    .getResourceAsStream("js/jquery.js"), StandardCharsets.UTF_8));
 
         Thread.sleep(3000);
 
@@ -110,7 +109,7 @@ public class DesktopBrowser implements Browsers {
 			ShootingStrategies.viewportRetina(100, this.header, 0, this.dpr))
 			.coordsProvider(provider);
 
-        BrowserCollector collector = new BrowserCollector();
+        BrowserCollectorJS collector = new BrowserCollectorJS();
         SimpleWriter writer = new SimpleWriter(this.folder, url, this.deviceWidth,
                                                this.viewportWidth, this.dpr, browserName);
         writer.setWriter(new FileWriter(this.folder + "results.csv"));

@@ -67,7 +67,7 @@ public class BrowserRow {
     }
 
     public File getScreenshot () {
-        if (this.childsNumber != 0)
+        if (this.childsNumber > 0)
             return null;
 
         int x = this.getX(),
@@ -107,7 +107,7 @@ public class BrowserRow {
     }
 
     public BigInteger getXPathId () {
-        String [] numbers = this.xpath.replaceAll("(/(\\w|-)+\\[(\\d+)\\])", "$3,")
+        String [] numbers = this.xpath.replaceAll("(/(\\w|-|:)+\\[(\\d+)\\])", "$3,")
                                       .split(",");
         BigInteger xpathId = BigInteger.valueOf(0),
                    aux;

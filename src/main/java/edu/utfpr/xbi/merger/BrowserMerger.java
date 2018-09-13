@@ -13,11 +13,13 @@ public class BrowserMerger {
     private PrintWriter writer;
     private Comparator c1;
     private Comparator c2;
+    private Comparator c3;
     private BufferedReader br1;
     private BufferedReader br2;
 
     public void setComparator1(Comparator c1) { this.c1 = c1; }
     public void setComparator2(Comparator c2) { this.c2 = c2; }
+    public void setComparator3(Comparator c3) { this.c3 = c3; }
     public void setPrintWriter(PrintWriter writer){ this.writer = writer; }
 
     public BrowserMerger (BufferedReader br1, BufferedReader br2) {
@@ -75,10 +77,13 @@ public class BrowserMerger {
         if (r1 == null || r2 == null) {
             result.setImageDiff(-1);
             result.setChiSquared(-1);
+            result.setPHash(-1);
         } else {
             result.setImageDiff(this.c1.compare(
                         r1.getScreenshot(), r2.getScreenshot()));
             result.setChiSquared(this.c2.compare(
+                        r1.getScreenshot(), r2.getScreenshot()));
+            result.setPHash(this.c3.compare(
                         r1.getScreenshot(), r2.getScreenshot()));
         }
         this.writer.println(result.toRow());

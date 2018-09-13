@@ -44,6 +44,9 @@ public class ComparisonRowTest {
                         "@ATTRIBUTE baseViewportWidth NUMERIC\n" +
                         "@ATTRIBUTE targetViewportWidth NUMERIC\n" +
                         "@ATTRIBUTE xpath STRING\n" +
+                        "@ATTRIBUTE baseXpath STRING\n" +
+                        "@ATTRIBUTE targetXpath STRING\n" +
+                        "@ATTRIBUTE phash NUMERIC\n" +
                         "@DATA";
         assertEquals(header, ComparisonRow.header());
     }

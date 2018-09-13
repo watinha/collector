@@ -8,7 +8,7 @@ import java.io.FileReader;
 public class CollectorPipeline {
     public static void main (String[] args) throws Exception {
         BufferedReader br = new BufferedReader(
-                new FileReader("url_list_mobile_filter.txt"));
+                new FileReader("url_list_lojas.txt"));
         String linha;
         int count = 1;
         while ((linha = br.readLine()) != null) {
