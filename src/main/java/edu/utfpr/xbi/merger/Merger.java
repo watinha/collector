@@ -16,7 +16,7 @@ import org.opencv.core.Core;
 public class Merger {
     public static void main (String args[]) throws Exception {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        Comparator c = new ImageDiffComparator();
+        Comparator c = new PHashCompartor();
         Comparator c2 = new ChiSquaredComparator();
         Comparator c3 = new PHashCompartor();
 
