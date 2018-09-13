@@ -73,6 +73,8 @@ public class DesktopBrowser implements Browsers {
 
         executor.executeScript(IOUtils.toString(Thread.currentThread().getContextClassLoader()
                     .getResourceAsStream("js/jquery.js"), StandardCharsets.UTF_8));
+        executor.executeScript(IOUtils.toString(Thread.currentThread().getContextClassLoader()
+                    .getResourceAsStream("js/visibility.js"), StandardCharsets.UTF_8));
 
         Thread.sleep(3000);
 
@@ -94,16 +96,16 @@ public class DesktopBrowser implements Browsers {
         }
         System.out.println(dpr);
         executor.executeScript(
-            "return (function () {" +
+            "(function () {" +
             "    var all = document.querySelectorAll(\"*\");" +
             "    for (var i = 0; i < all.length; i++) {" +
             "    	var s = window.getComputedStyle(all[i], null);" +
-            "       if (s.position.search(\"fixed\") >= 0){" +
-            "            all[i].style.cssText = \"position:absolute !important\";" +
+            "       if (s.position == \"fixed\"){" +
+            "            all[i].style.position = \"absolute\";" +
             "       }" +
             "    }" +
-            "    return \"\";" +
-            "})();"
+            "})();" +
+	    "return '';"
         );
 
         AShot ashot = new AShot().shootingStrategy(

@@ -68,6 +68,8 @@ public class MobileBrowser implements Browsers {
         Thread.sleep(7000);
         executor.executeScript(IOUtils.toString(Thread.currentThread().getContextClassLoader()
                     .getResourceAsStream("js/jquery.js"), StandardCharsets.UTF_8));
+        executor.executeScript(IOUtils.toString(Thread.currentThread().getContextClassLoader()
+                    .getResourceAsStream("js/visibility.js"), StandardCharsets.UTF_8));
 
         Thread.sleep(3000);
 

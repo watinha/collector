@@ -73,7 +73,7 @@ public class JSCodes {
         "   var target = window.elements[i]," +
         "       parent = target.parentElement," +
         "       tagName = (target.tagName ? target.tagName.toUpperCase() : '');" +
-        "   if (tagName && (tagName !== 'SCRIPT' && tagName !== 'STYLE' && tagName !== 'LINK' && tagName !== 'NOSCRIPT' && parseInt($(target).outerWidth()) !== 0 && parseInt($(target).outerHeight()) !== 0) && $(target).is(':visible')) {" +
+        "   if (tagName && (tagName !== 'SCRIPT' && tagName !== 'STYLE' && tagName !== 'LINK' && tagName !== 'NOSCRIPT' && parseInt($(target).outerWidth()) !== 0 && parseInt($(target).outerHeight()) !== 0) && target.isVisible()) {" +
         "       var row = path + ',' + url + ',' + i + ',' + target.tagName + ',' + browser + ',' + parseInt($(target).offset().left) + ',' + parseInt($(target).offset().top) + ',' + parseInt($(target).outerHeight()) + ',' + parseInt($(target).outerWidth()) + ',' + parseInt($(parent).offset().left) + ',' + parseInt($(parent).offset().top) + ',' + deviceWidth + ',' + viewportWidth + ',' + dpi + ',' + (target.querySelectorAll('*').length) + ',' + target.innerHTML.length + ',' + getXPath(target);" +
         "       window.rows.push(row);" +
         "   }" +

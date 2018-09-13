@@ -11,6 +11,8 @@ This project was built using the following technologies:
 * AShot - for taking full page screenshots on desktop and mobile browsers
 * OpenCV - for running screenshot comparison using Chi-squared distance.
 * jpHash - for further comparing screenshots.
+* jQuery - for identifying the position/size of elements
+* useAllFive true-visibility script - for checking elements visibility
 
 Installation
 ------------
