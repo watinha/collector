@@ -26,6 +26,14 @@ public class BrowserRow {
     private String browserName;
     private String folder;
     private String xpath;
+
+    private int previousSiblingLeft;
+    private int previousSiblingTop;
+    private int nextSiblingLeft;
+    private int nextSiblingTop;
+    private int textNodes;
+    private String fontFamily;
+
     public String getURL() { return URL; }
     public int getId() { return id; }
     public String getTagName() { return tagName; }
@@ -43,10 +51,18 @@ public class BrowserRow {
     public String getBrowserName() { return browserName; }
     public String getFolder() {return this.folder; }
     public String getXPath() { return this.xpath; }
+    public int getPreviousSiblingLeft () { return this.previousSiblingLeft; }
+    public int getPreviousSiblingTop () { return this.previousSiblingTop; }
+    public int getNextSiblingLeft () { return this.nextSiblingLeft; }
+    public int getNextSiblingTop () { return this.nextSiblingTop; }
+    public int getTextNodes () { return this.textNodes; }
+    public String getFontFamily () { return this.fontFamily; }
 
     private BrowserRow(String URL, int id, String tagName, int x, int y, int height, int width, int parentX,
                 int parentY, int deviceWidth, int viewportWidth, float DPI, int childsNumber,
-                int textLength, String browserName, String folder, String xpath) {
+                int textLength, String browserName, String folder, String xpath,
+                int previousSiblingLeft, int previousSiblingTop, int nextSiblingLeft, int nextSiblingTop,
+                int textNodes, String fontFamily) {
         this.URL = URL;
         this.id = id;
         this.tagName = tagName;
@@ -64,6 +80,12 @@ public class BrowserRow {
         this.browserName = browserName;
         this.folder = folder;
         this.xpath = xpath;
+        this.previousSiblingLeft = previousSiblingLeft;
+        this.previousSiblingTop = previousSiblingTop;
+        this.nextSiblingLeft = nextSiblingLeft;
+        this.nextSiblingTop = nextSiblingTop;
+        this.textNodes = textNodes;
+        this.fontFamily = fontFamily;
     }
 
     public File getScreenshot () {
@@ -138,7 +160,8 @@ public class BrowserRow {
                URL = fields[1],
                tagName = fields[3],
                browserName = fields[4],
-               xpath = fields[16];
+               xpath = fields[16],
+               fontFamily = fields[22];
         float dpi = (float) Double.parseDouble(fields[13]);
         int id = Integer.parseInt(fields[2]),
             x = Integer.parseInt(fields[5]),
@@ -150,9 +173,15 @@ public class BrowserRow {
             deviceWidth = Integer.parseInt(fields[11]),
             viewportWidth = Integer.parseInt(fields[12]),
             childsNumber = Integer.parseInt(fields[14]),
-            textLength = Integer.parseInt(fields[15]);
+            textLength = Integer.parseInt(fields[15]),
+            previousSiblingLeft = Integer.parseInt(fields[17]),
+            previousSiblingTop = Integer.parseInt(fields[18]),
+            nextSiblingLeft = Integer.parseInt(fields[19]),
+            nextSiblingTop = Integer.parseInt(fields[20]),
+            textNodes = Integer.parseInt(fields[21]);
         return new BrowserRow(URL, id, tagName, x, y, height, width, parentX, parentY,
                        deviceWidth, viewportWidth, dpi, childsNumber, textLength,
-                       browserName, folder, xpath);
+                       browserName, folder, xpath, previousSiblingLeft, previousSiblingTop,
+                       nextSiblingLeft, nextSiblingTop, textNodes, fontFamily);
     }
 }

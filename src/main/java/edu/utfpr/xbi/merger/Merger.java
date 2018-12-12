@@ -16,7 +16,7 @@ import org.opencv.core.Core;
 public class Merger {
     public static void main (String args[]) throws Exception {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        Comparator c = new PHashCompartor();
+        Comparator c = new ImageDiffComparator();
         Comparator c2 = new ChiSquaredComparator();
         Comparator c3 = new PHashCompartor();
 
@@ -24,6 +24,7 @@ public class Merger {
 //            "ipadAir2-galaxyTabS2"
 //            "chrome_win-firefox_win",
 //            "chrome_win-ie",
+//            "iphonese-motog4",
             "motog4-iphonese",
             "motog4-iphone8plus",
 //            "motog4-motoz2",

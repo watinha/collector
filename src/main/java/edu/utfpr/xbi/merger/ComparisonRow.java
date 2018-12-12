@@ -194,10 +194,73 @@ public class ComparisonRow {
         return (this.target == null ? null : this.target.getXPath());
     }
 
+    private int getTargetPreviousSiblingLeft () {
+        if (this.target != null)
+            return this.target.getPreviousSiblingLeft();
+        return -1;
+    }
+    private int getTargetPreviousSiblingTop () {
+        if (this.target != null)
+            return this.target.getPreviousSiblingTop();
+        return -1;
+    }
+    private int getTargetNextSiblingLeft () {
+        if (this.target != null)
+            return this.target.getNextSiblingLeft();
+        return -1;
+    }
+    private int getTargetNextSiblingTop () {
+        if (this.target != null)
+            return this.target.getNextSiblingTop();
+        return -1;
+    }
+    private int getTargetTextNodes () {
+        if (this.target != null)
+            return this.target.getTextNodes();
+        return -1;
+    }
+    private String getTargetFontFamily () {
+        if (this.target != null)
+            return this.target.getFontFamily();
+        return null;
+    }
+
+    private int getBasePreviousSiblingLeft () {
+        if (this.base != null)
+            return this.base.getPreviousSiblingLeft();
+        return -1;
+    }
+    private int getBasePreviousSiblingTop () {
+        if (this.base != null)
+            return this.base.getPreviousSiblingTop();
+        return -1;
+    }
+    private int getBaseNextSiblingLeft () {
+        if (this.base != null)
+            return this.base.getNextSiblingLeft();
+        return -1;
+    }
+    private int getBaseNextSiblingTop () {
+        if (this.base != null)
+            return this.base.getNextSiblingTop();
+        return -1;
+    }
+    private int getBaseTextNodes () {
+        if (this.base != null)
+            return this.base.getTextNodes();
+        return -1;
+    }
+    private String getBaseFontFamily () {
+        if (this.base != null)
+            return this.base.getFontFamily();
+        return null;
+    }
+
     public String toRow() {
         return String.format("%s,%d,%s,%d,%d,\"%s\",\"%s\",%s,%s,%.1f,%.1f,%s,%s," +
                              "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d," +
-                             "%.1f,%.1f,%d,%d,%d,%d,%s,%s,%s,%.1f",
+                             "%.1f,%.1f,%d,%d,%d,%d,%s,%s,%s,%.1f," +
+                             "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s,%s",
                              this.getURL(), this.getId(), this.getTagName(),
                              this.getChildsNumber(), this.getTextLength(),
                              this.getBasePlatform(), this.getTargetPlatform(),
@@ -214,7 +277,13 @@ public class ComparisonRow {
                              this.getBaseDeviceWidth(), this.getTargetDeviceWidth(),
                              this.getBaseViewportWidth(), this.getTargetViewportWidth(),
                              this.getXPath(),this.getBaseXPath(), this.getTargetXPath(),
-                             this.phash);
+                             this.phash,
+                             this.getBasePreviousSiblingLeft(), this.getTargetPreviousSiblingLeft(),
+                             this.getBasePreviousSiblingTop(), this.getTargetPreviousSiblingTop(),
+                             this.getBaseNextSiblingLeft(), this.getTargetNextSiblingLeft(),
+                             this.getBaseNextSiblingTop(), this.getTargetNextSiblingTop(),
+                             this.getBaseTextNodes(), this.getTargetTextNodes(),
+                             this.getBaseFontFamily(), this.getTargetFontFamily());
     }
 
     public static String header() {
@@ -254,6 +323,12 @@ public class ComparisonRow {
                "@ATTRIBUTE baseXpath STRING\n" +
                "@ATTRIBUTE targetXpath STRING\n" +
                "@ATTRIBUTE phash NUMERIC\n" +
+               "@ATTRIBUTE previousSiblingLeft NUMERIC\n" +
+               "@ATTRIBUTE previousSiblingTop NUMERIC\n" +
+               "@ATTRIBUTE nextSiblingLeft NUMERIC\n" +
+               "@ATTRIBUTE nextSiblingTop NUMERIC\n" +
+               "@ATTRIBUTE textNodes NUMERIC\n" +
+               "@ATTRIBUTE fontFamily STRING\n" +
                "@DATA";
     }
 }

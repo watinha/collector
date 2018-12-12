@@ -71,10 +71,50 @@ public class JSCodes {
         "window.rows = [];" +
         "for (var i = (max - 1); i >= 0; i--){" +
         "   var target = window.elements[i]," +
+        "       aux," +
         "       parent = target.parentElement," +
-        "       tagName = (target.tagName ? target.tagName.toUpperCase() : '');" +
-        "   if (tagName && (tagName !== 'SCRIPT' && tagName !== 'STYLE' && tagName !== 'LINK' && tagName !== 'NOSCRIPT' && parseInt($(target).outerWidth()) !== 0 && parseInt($(target).outerHeight()) !== 0) && target.isVisible()) {" +
-        "       var row = path + ',' + url + ',' + i + ',' + target.tagName + ',' + browser + ',' + parseInt($(target).offset().left) + ',' + parseInt($(target).offset().top) + ',' + parseInt($(target).outerHeight()) + ',' + parseInt($(target).outerWidth()) + ',' + parseInt($(parent).offset().left) + ',' + parseInt($(parent).offset().top) + ',' + deviceWidth + ',' + viewportWidth + ',' + dpi + ',' + (target.querySelectorAll('*').length) + ',' + target.innerHTML.length + ',' + getXPath(target);" +
+        "       previous_sibling, next_sibling," +
+        "       tagName = (target.tagName ? target.tagName.toUpperCase() : '')," +
+        "       text_nodes = 0," +
+        "       font_family = window.getComputedStyle(target).fontFamily;" +
+        "" +
+        "   aux = target;" +
+        "   while (aux.parentElement != null && aux.previousElementSibling == null)" +
+        "      aux = aux.parentElement;" +
+        "   previous_sibling = aux.previousElementSibling;" +
+        "   aux = target;" +
+        "   while (aux.parentElement != null && aux.nextElementSibling == null)" +
+        "      aux = aux.parentElement;" +
+        "   next_sibling = aux.nextElementSibling;" +
+        "" +
+        "   target.childNodes.forEach(function(node) { if(node.nodeType === 3) text_nodes++; });" +
+        "" +
+        "   if (tagName && tagName !== 'HTML' && " +
+                           "tagName !== 'SCRIPT' && " +
+                           "tagName !== 'STYLE' && " +
+                           "tagName !== 'LINK' && " +
+                           "tagName !== 'NOSCRIPT' && " +
+                           "parseInt($(target).outerWidth()) !== 0 && " +
+                           "parseInt($(target).outerHeight()) !== 0 && " +
+                           "parseInt($(target).outerWidth() + $(target).offset().left) > 0 && " +
+                           "parseInt($(target).offset().left) < viewportWidth && " +
+                           "target.isVisible()) {" +
+        "       var row = path + ',' + url + ',' + i + ',' + target.tagName + ',' + browser + ',' +" +
+        "           parseInt($(target).offset().left) + ',' + " +
+        "           parseInt($(target).offset().top) + ',' + " +
+        "           parseInt($(target).outerHeight()) + ',' + " +
+        "           parseInt($(target).outerWidth()) + ',' + " +
+        "           parseInt($(parent).offset().left) + ',' + " +
+        "           parseInt($(parent).offset().top) + ',' + " +
+        "           deviceWidth + ',' + viewportWidth + ',' + dpi + ',' + " +
+        "           (target.querySelectorAll('*').length) + ',' + " +
+        "           target.innerHTML.length + ',' + getXPath(target) + ',' + " +
+        "           (previous_sibling ? parseInt($(previous_sibling).offset().left) : 0) + ',' + " +
+        "           (previous_sibling ? parseInt($(previous_sibling).offset().top) : 0) + ',' + " +
+        "           (next_sibling ? parseInt($(next_sibling).offset().left) : 0) + ',' + " +
+        "           (next_sibling ? parseInt($(next_sibling).offset().top) : 0) + ',' + " +
+        "           text_nodes + ',' + " +
+        "           font_family;" +
         "       window.rows.push(row);" +
         "   }" +
         "}" +

@@ -51,8 +51,8 @@ public class BrowserMergerMergeTest {
                       returnList2 = new ArrayList <String> ();
         BrowserMerger merger = spy(new BrowserMerger(br1, br2));
         for (int i = 0; i < this.count; i++) {
-            returnList1.add(String.format("s/,http://a.com,%d,s,platform,1,1,1,1,1,1,1,1,1,1,1,/body[2]", i));
-            returnList2.add(String.format("s/,http://a.com,%d,s,platform,1,1,1,1,1,1,1,1,1,1,1,/body[2]", i));
+            returnList1.add(String.format("s/,http://a.com,%d,s,platform,1,1,1,1,1,1,1,1,1,1,1,/body[2],12,13,14,15,16,Times", i));
+            returnList2.add(String.format("s/,http://a.com,%d,s,platform,1,1,1,1,1,1,1,1,1,1,1,/body[2],12,13,14,15,16,Times", i));
             doNothing().when(merger)._merge(
                     argThat(new BrowserRowMatcher(i)),
                     argThat(new BrowserRowMatcher(i)));

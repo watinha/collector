@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 public class BrowserRowTest {
     @Test
     public void testBuildSingleRow() throws Exception {
-        String row = "somefolder/,http://abobrinha.com,1,a,Android 2.0 - Chrome,220,1013,19,90,8,993,1080,360,3.0,0,12,/body[1]/div[1]";
+        String row = "somefolder/,http://abobrinha.com,1,a,Android 2.0 - Chrome,220,1013,19,90,8,993,1080,360,3.0,0,12,/body[1]/div[1],12,13,14,15,16,Times";
         BrowserRow r = BrowserRow.readRow(row);
         assertEquals("http://abobrinha.com", r.getURL());
         assertEquals(1, r.getId());
@@ -35,11 +35,17 @@ public class BrowserRowTest {
         assertEquals("/body[1]/div[1]", r.getXPath());
         assertEquals("Android 2.0 - Chrome", r.getBrowserName());
         assertEquals("somefolder/", r.getFolder());
+        assertEquals(12, r.getPreviousSiblingLeft());
+        assertEquals(13, r.getPreviousSiblingTop());
+        assertEquals(14, r.getNextSiblingLeft());
+        assertEquals(15, r.getNextSiblingTop());
+        assertEquals(16, r.getTextNodes());
+        assertEquals("Times", r.getFontFamily());
     }
 
     @Test
     public void testBuildSingleRowWithDifferentValues() throws Exception {
-        String row = "results/chrome/,http://pepino.com,2,section,iOS 4.3.2 - Safari,113,12,49,100,98,7,960,320,1.8,9,133,/body[2]/a";
+        String row = "results/chrome/,http://pepino.com,2,section,iOS 4.3.2 - Safari,113,12,49,100,98,7,960,320,1.8,9,133,/body[2]/a,12,13,14,15,16,Times";
         BrowserRow r = BrowserRow.readRow(row);
         assertEquals("http://pepino.com", r.getURL());
         assertEquals(2, r.getId());
@@ -62,7 +68,7 @@ public class BrowserRowTest {
 
     @Test
     public void testGetScreenshotPath1 () throws Exception {
-        String row = "results/chrome/,bla,2,section,iOS,113,12,49,100,98,7,960,320,1.8,0,133,/body[2]/div[5]";
+        String row = "results/chrome/,bla,2,section,iOS,113,12,49,100,98,7,960,320,1.8,0,133,/body[2]/div[5],12,13,14,15,16,Times";
         BrowserRow r = spy(BrowserRow.readRow(row));
         BufferedImage completeImage = mock(BufferedImage.class),
                       targetScreenshot = mock(BufferedImage.class);
@@ -84,7 +90,7 @@ public class BrowserRowTest {
 
     @Test
     public void testGetScreenshotPath2 () throws Exception {
-        String row = "somefolder/,abr,1,a,Android,220,1013,19,90,8,993,1080,360,3.0,0,12,/body[1]/div[3]/span[3]";
+        String row = "somefolder/,abr,1,a,Android,220,1013,19,90,8,993,1080,360,3.0,0,12,/body[1]/div[3]/span[3],12,13,14,15,16,Times";
         BrowserRow r = spy(BrowserRow.readRow(row));
         BufferedImage completeImage = mock(BufferedImage.class),
                       targetScreenshot = mock(BufferedImage.class);
@@ -106,7 +112,7 @@ public class BrowserRowTest {
 
     @Test
     public void testGetScreenshotOutsideRaster () throws Exception {
-        String row = "somefolder/,abr,1,a,Android,1070,1013,90,80,8,993,1080,360,3.0,0,12,/body[1]/div[3]/span[3]";
+        String row = "somefolder/,abr,1,a,Android,1070,1013,90,80,8,993,1080,360,3.0,0,12,/body[1]/div[3]/span[3],12,13,14,15,16,Times";
         BrowserRow r = spy(BrowserRow.readRow(row));
         BufferedImage completeImage = mock(BufferedImage.class),
                       targetScreenshot = mock(BufferedImage.class),
@@ -131,7 +137,7 @@ public class BrowserRowTest {
 
     @Test
     public void testGetScreenshotOutsideRaster2 () throws Exception {
-        String row = "somefolder/,abr,1,a,Android,1081,1081,90,80,8,993,1080,360,3.0,0,12,/body[1]/div[3]/span[3]";
+        String row = "somefolder/,abr,1,a,Android,1081,1081,90,80,8,993,1080,360,3.0,0,12,/body[1]/div[3]/span[3],12,13,14,15,16,Times";
         BrowserRow r = spy(BrowserRow.readRow(row));
         BufferedImage completeImage = mock(BufferedImage.class),
                       targetScreenshot = mock(BufferedImage.class),
@@ -153,7 +159,7 @@ public class BrowserRowTest {
 
     @Test
     public void testGetScreenshotOutsideRaster3 () throws Exception {
-        String row = "somefolder/,abr,1,a,Android,-1,-1,90,80,8,993,1080,360,3.0,0,12,/body[1]/div[3]/span[3]";
+        String row = "somefolder/,abr,1,a,Android,-1,-1,90,80,8,993,1080,360,3.0,0,12,/body[1]/div[3]/span[3],12,13,14,15,16,Times";
         BrowserRow r = spy(BrowserRow.readRow(row));
         BufferedImage completeImage = mock(BufferedImage.class),
                       targetScreenshot = mock(BufferedImage.class),
@@ -178,7 +184,7 @@ public class BrowserRowTest {
 
     @Test
     public void testGetScreenshotOutsideRaster4 () throws Exception {
-        String row = "somefolder/,abr,1,a,Android,-81,-91,90,80,8,993,1080,360,3.0,0,12,/body[1]/div[3]/span[3]";
+        String row = "somefolder/,abr,1,a,Android,-81,-91,90,80,8,993,1080,360,3.0,0,12,/body[1]/div[3]/span[3],12,13,14,15,16,Times";
         BrowserRow r = spy(BrowserRow.readRow(row));
         BufferedImage completeImage = mock(BufferedImage.class),
                       targetScreenshot = mock(BufferedImage.class),
@@ -200,7 +206,7 @@ public class BrowserRowTest {
 
     @Test
     public void testGetScreenshotOutsideRaster5 () throws Exception {
-        String row = "somefolder/,abr,1,a,Android,-81,0,90,80,8,993,1080,360,3.0,0,12,/body[1]/div[3]/span[3]";
+        String row = "somefolder/,abr,1,a,Android,-81,0,90,80,8,993,1080,360,3.0,0,12,/body[1]/div[3]/span[3],12,13,14,15,16,Times";
         BrowserRow r = spy(BrowserRow.readRow(row));
         BufferedImage completeImage = mock(BufferedImage.class),
                       targetScreenshot = mock(BufferedImage.class),
@@ -222,7 +228,7 @@ public class BrowserRowTest {
 
     @Test
     public void testGetScreenshotOutsideRaster6_negative_or_zero_height () throws Exception {
-        String row = "somefolder/,abr,1,a,Android,30,40,0,0,8,993,1080,360,3.0,0,12,/body[1]/div[3]/span[3]";
+        String row = "somefolder/,abr,1,a,Android,30,40,0,0,8,993,1080,360,3.0,0,12,/body[1]/div[3]/span[3],12,13,14,15,16,Times";
         BrowserRow r = spy(BrowserRow.readRow(row));
         BufferedImage completeImage = mock(BufferedImage.class),
                       targetScreenshot = mock(BufferedImage.class);
@@ -244,7 +250,7 @@ public class BrowserRowTest {
 
     @Test
     public void testGetScreenshotOutsideRaster7_negative_or_zero_height_and_width () throws Exception {
-        String row = "somefolder/,abr,1,a,Android,1080,1080,1080,1080,8,993,1080,360,3.0,0,12,/body[1]/div[3]/span[3]";
+        String row = "somefolder/,abr,1,a,Android,1080,1080,1080,1080,8,993,1080,360,3.0,0,12,/body[1]/div[3]/span[3],12,13,14,15,16,Times";
         BrowserRow r = spy(BrowserRow.readRow(row));
         BufferedImage completeImage = mock(BufferedImage.class),
                       targetScreenshot = mock(BufferedImage.class);
@@ -266,7 +272,7 @@ public class BrowserRowTest {
 
     @Test
     public void testGetScreenshotWith10Childs () throws Exception {
-        String row = "somefolder/,http://abobrinha.com,1,a,Android 2.0 - Chrome,113,12,49,100,98,7,960,320,1.8,10,133,/body[1]/div[1]";
+        String row = "somefolder/,http://abobrinha.com,1,a,Android 2.0 - Chrome,113,12,49,100,98,7,960,320,1.8,10,133,/body[1]/div[1],12,13,14,15,16,Times";
         BrowserRow r = spy(BrowserRow.readRow(row));
         BufferedImage completeImage = mock(BufferedImage.class),
                       targetScreenshot = mock(BufferedImage.class);
@@ -292,7 +298,7 @@ public class BrowserRowTest {
 
     @Test
     public void testGetScreenshotWith15Childs () throws Exception {
-        String row = "somefolder/,http://abobrinha.com,1,a,Android 2.0 - Chrome,113,12,49,100,98,7,960,320,1.8,15,133,/body[1]/div[1]";
+        String row = "somefolder/,http://abobrinha.com,1,a,Android 2.0 - Chrome,113,12,49,100,98,7,960,320,1.8,15,133,/body[1]/div[1],12,13,14,15,16,Times";
         BrowserRow r = spy(BrowserRow.readRow(row));
         BufferedImage completeImage = mock(BufferedImage.class),
                       targetScreenshot = mock(BufferedImage.class);
@@ -318,7 +324,7 @@ public class BrowserRowTest {
 
     @Test
     public void testGetScreenshotWith20Childs () throws Exception {
-        String row = "somefolder/,http://abobrinha.com,1,a,Android 2.0 - Chrome,113,12,49,100,98,7,960,320,1.8,20,133,/body[1]/div[1]";
+        String row = "somefolder/,http://abobrinha.com,1,a,Android 2.0 - Chrome,113,12,49,100,98,7,960,320,1.8,20,133,/body[1]/div[1],12,13,14,15,16,Times";
         BrowserRow r = spy(BrowserRow.readRow(row));
         BufferedImage completeImage = mock(BufferedImage.class),
                       targetScreenshot = mock(BufferedImage.class);
@@ -344,7 +350,7 @@ public class BrowserRowTest {
 
     @Test
     public void testGetScreenshotWith21Childs () throws Exception {
-        String row = "somefolder/,http://abobrinha.com,1,a,Android 2.0 - Chrome,220,1013,19,90,8,993,1080,360,3.0,21,12,/body[1]/div[1]";
+        String row = "somefolder/,http://abobrinha.com,1,a,Android 2.0 - Chrome,220,1013,19,90,8,993,1080,360,3.0,21,12,/body[1]/div[1],12,13,14,15,16,Times";
         BrowserRow r = spy(BrowserRow.readRow(row));
         assertEquals("http://abobrinha.com", r.getURL());
         assertEquals(21, r.getChildsNumber());

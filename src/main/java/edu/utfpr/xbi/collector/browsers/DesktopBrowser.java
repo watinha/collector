@@ -104,8 +104,7 @@ public class DesktopBrowser implements Browsers {
             "            all[i].style.position = \"absolute\";" +
             "       }" +
             "    }" +
-            "})();" +
-	    "return '';"
+            "})();"
         );
 
         AShot ashot = new AShot().shootingStrategy(

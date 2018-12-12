@@ -26,77 +26,84 @@ public class BrowserMergerSingleRowTest {
         return Arrays.asList(new Object[][]{
             {
                 spy(BrowserRow.readRow(
-                        "somefolder/android/,http://abobrinha.com,1,a,Android 2.0 - Chrome,220,1013,19,90,8,993,1080,360,3.0,0,12,/body")),
+                        "somefolder/android/,http://abobrinha.com,1,a,Android 2.0 - Chrome,220,1013,19,90,8,993,1080,360,3.0,0,12,/body,12,13,14,15,16,Times")),
                 spy(BrowserRow.readRow(
-                        "somefolder/iphonese/,http://abobrinha.com,1,a,iOS - iPhone SE,220,1013,19,90,8,993,1080,360,3.0,0,12,/div")),
+                        "somefolder/iphonese/,http://abobrinha.com,1,a,iOS - iPhone SE,220,1013,19,90,8,993,1080,360,3.0,0,12,/div,12,13,14,15,16,Times")),
                 "http://abobrinha.com,1,a,0,12," +
                      "\"Android 2.0 - Chrome\",\"iOS - iPhone SE\",null,null," +
                      "3.0,3.0,somefolder/android/1.png,somefolder/iphonese/1.png," +
-                     "220,220,1013,1013,19,19,90,90,8,8,993,993,0.0,0.0,1080,1080,360,360,/div,/body,/div,0.5",
+                     "220,220,1013,1013,19,19,90,90,8,8,993,993,0.0,0.0,1080,1080,360,360,/div,/body,/div,0.5," +
+                     "12,12,13,13,14,14,15,15,16,16,Times,Times",
                 0f, 0f, "somefolder/android/1.png", "somefolder/iphonese/1.png", 0.5
             },
             {
                 spy(BrowserRow.readRow(
-                        "result/motog4/,http://pepino.com,12,SVG,Android - MotoG4 - Chrome,226,1020,27,98,17,1003,1080,360,3.0,3,19,/a")),
+                        "result/motog4/,http://pepino.com,12,SVG,Android - MotoG4 - Chrome,226,1020,27,98,17,1003,1080,360,3.0,3,19,/a,12,13,14,15,16,Times")),
                 spy(BrowserRow.readRow(
-                        "result/iphonese/,http://pepino.com,12,SVG,iOS - iPhone SE - Safari,220,1013,19,90,8,993,720,360,2.0,3,19,/a")),
+                        "result/iphonese/,http://pepino.com,12,SVG,iOS - iPhone SE - Safari,220,1013,19,90,8,993,720,360,2.0,3,19,/a,2,3,4,5,6,Arial")),
                 "http://pepino.com,12,SVG,3,19," +
                      "\"Android - MotoG4 - Chrome\",\"iOS - iPhone SE - Safari\",null,null," +
                      "3.0,2.0,result/motog4/12.png,result/iphonese/12.png," +
-                     "226,220,1020,1013,27,19,98,90,17,8,1003,993,0.0,0.0,1080,720,360,360,/a,/a,/a,0.0",
+                     "226,220,1020,1013,27,19,98,90,17,8,1003,993,0.0,0.0,1080,720,360,360,/a,/a,/a,0.0," +
+                     "12,2,13,3,14,4,15,5,16,6,Times,Arial",
                 0f, 0f, "result/motog4/12.png", "result/iphonese/12.png", 0.0
             },
             {
                 spy(BrowserRow.readRow(
-                        "result/motog4/,http://pepino.com,12,SVG,Android - MotoG4 - Chrome,226,1020,27,98,17,1003,1080,360,3.0,3,19,/a")),
+                        "result/motog4/,http://pepino.com,12,SVG,Android - MotoG4 - Chrome,226,1020,27,98,17,1003,1080,360,3.0,3,19,/a,12,13,14,15,16,Times")),
                 spy(BrowserRow.readRow(
-                        "result/iphonese/,http://pepino.com,12,SVG,iOS - iPhone SE - Safari,220,1013,19,90,8,993,720,360,2.0,3,19,/b")),
+                        "result/iphonese/,http://pepino.com,12,SVG,iOS - iPhone SE - Safari,220,1013,19,90,8,993,720,360,2.0,3,19,/b,12,13,14,15,16,Times")),
                 "http://pepino.com,12,SVG,3,19," +
                      "\"Android - MotoG4 - Chrome\",\"iOS - iPhone SE - Safari\",null,null," +
                      "3.0,2.0,result/motog4/12.png,result/iphonese/12.png," +
-                     "226,220,1020,1013,27,19,98,90,17,8,1003,993,12345.0,333.0,1080,720,360,360,/b,/a,/b,0.3",
+                     "226,220,1020,1013,27,19,98,90,17,8,1003,993,12345.0,333.0,1080,720,360,360,/b,/a,/b,0.3," +
+                     "12,12,13,13,14,14,15,15,16,16,Times,Times",
                 12345f, 333f, "result/motog4/12.png", "result/iphonese/12.png", 0.3
             },
             {
                 spy(BrowserRow.readRow(
-                        "somefolder/android/,http://abobrinha.com,1,a,Android 2.0 - Chrome,220,1013,19,90,8,993,1080,360,3.0,0,12,/a")),
+                        "somefolder/android/,http://abobrinha.com,1,a,Android 2.0 - Chrome,220,1013,19,90,8,993,1080,360,3.0,0,12,/a,12,13,14,15,16,Times")),
                 spy(BrowserRow.readRow(
-                        "somefolder/iphonese/,http://abobrinha.com,1,a,iOS - iPhone SE,220,1013,19,90,8,993,1080,360,3.0,0,12,/a")),
+                        "somefolder/iphonese/,http://abobrinha.com,1,a,iOS - iPhone SE,220,1013,19,90,8,993,1080,360,3.0,0,12,/a,12,13,14,15,16,Times")),
                 "http://abobrinha.com,1,a,0,12," +
                      "\"Android 2.0 - Chrome\",\"iOS - iPhone SE\",null,null," +
                      "3.0,3.0,somefolder/android/1.png,somefolder/iphonese/1.png," +
-                     "220,220,1013,1013,19,19,90,90,8,8,993,993,2345.0,123.0,1080,1080,360,360,/a,/a,/a,0.4",
+                     "220,220,1013,1013,19,19,90,90,8,8,993,993,2345.0,123.0,1080,1080,360,360,/a,/a,/a,0.4," +
+                     "12,12,13,13,14,14,15,15,16,16,Times,Times",
                 2345f, 123f, "somefolder/android/1.png", "somefolder/iphonese/1.png", 0.4
             },
             {
                 spy(BrowserRow.readRow(
-                        "result/motog4/,http://pepino.com,12,SVG,Android - MotoG4 - Chrome,214,1006,11,82,0,983,1080,360,3.0,3,19,/a")),
+                        "result/motog4/,http://pepino.com,12,SVG,Android - MotoG4 - Chrome,214,1006,11,82,0,983,1080,360,3.0,3,19,/a,12,13,14,15,16,Times")),
                 spy(BrowserRow.readRow(
-                        "result/iphonese/,http://pepino.com,12,SVG,iOS - iPhone SE - Safari,220,1013,19,90,9,993,720,360,2.0,3,19,/a")),
+                        "result/iphonese/,http://pepino.com,12,SVG,iOS - iPhone SE - Safari,220,1013,19,90,9,993,720,360,2.0,3,19,/a,12,13,14,15,16,Times")),
                 "http://pepino.com,12,SVG,3,19," +
                      "\"Android - MotoG4 - Chrome\",\"iOS - iPhone SE - Safari\",null,null," +
                      "3.0,2.0,result/motog4/12.png,result/iphonese/12.png," +
-                     "214,220,1006,1013,11,19,82,90,0,9,983,993,12345.0,333.0,1080,720,360,360,/a,/a,/a,0.7",
+                     "214,220,1006,1013,11,19,82,90,0,9,983,993,12345.0,333.0,1080,720,360,360,/a,/a,/a,0.7," +
+                     "12,12,13,13,14,14,15,15,16,16,Times,Times",
                 12345f, 333f, "result/motog4/12.png", "result/iphonese/12.png", 0.7
             },
             {
                 spy(BrowserRow.readRow(
-                        "result/motog4/,http://pepino.com,12,SVG,Android - MotoG4 - Chrome,214,1006,11,82,0,983,1080,360,3.0,3,19,/a")),
+                        "result/motog4/,http://pepino.com,12,SVG,Android - MotoG4 - Chrome,214,1006,11,82,0,983,1080,360,3.0,3,19,/a,12,13,14,15,16,Times")),
                 null,
                 "http://pepino.com,12,SVG,3,19," +
                      "\"Android - MotoG4 - Chrome\",\"null\",null,null," +
                      "3.0,-1.0,result/motog4/12.png,null," +
-                     "214,-1,1006,-1,11,-1,82,-1,0,-1,983,-1,-1.0,-1.0,1080,-1,360,-1,/a,/a,null,-1.0",
+                     "214,-1,1006,-1,11,-1,82,-1,0,-1,983,-1,-1.0,-1.0,1080,-1,360,-1,/a,/a,null,-1.0," +
+                     "12,-1,13,-1,14,-1,15,-1,16,-1,Times,null",
                 12345f, 333f, "result/motog4/12.png", "result/iphonese/12.png", -1.0
             },
             {
                 null,
                 spy(BrowserRow.readRow(
-                        "result/motog4/,http://pepino.com,12,SVG,Android - MotoG4 - Chrome,214,1006,11,82,0,983,1080,360,3.0,3,19,/a")),
+                        "result/motog4/,http://pepino.com,12,SVG,Android - MotoG4 - Chrome,214,1006,11,82,0,983,1080,360,3.0,3,19,/a,12,13,14,15,16,Times")),
                 "http://pepino.com,12,SVG,3,19," +
                      "\"null\",\"Android - MotoG4 - Chrome\",null,null," +
                      "-1.0,3.0,null,result/motog4/12.png," +
-                     "-1,214,-1,1006,-1,11,-1,82,-1,0,-1,983,-1.0,-1.0,-1,1080,-1,360,/a,null,/a,-1.0",
+                     "-1,214,-1,1006,-1,11,-1,82,-1,0,-1,983,-1.0,-1.0,-1,1080,-1,360,/a,null,/a,-1.0," +
+                     "-1,12,-1,13,-1,14,-1,15,-1,16,null,Times",
                 12345f, 333f, "result/iphonese/12.png", "result/motog4/12.png", -1.0
             }
         });
