@@ -1,16 +1,15 @@
 (function () {
-    var Navigator = function (file, screenshots, container, cursor, f) {
+    var Navigator = function (file, screenshots, container, cursor) {
         var file = file,
             elements = [],
             count = 0,
-            paintPosition,
-            filename = f;
+            paintPosition;
 
         (function () {
             var lines = file.split("\n");
-            for (var i = 34; i < lines.length; i++) {
+            for (var i = 43; i < lines.length; i++) {
                 var attrs = lines[i].split(",");
-                elements[i - 34] = {
+                elements[i - 43] = {
                     url: attrs[0],
                     id: attrs[1],
                     tagName: attrs[2],
@@ -42,7 +41,22 @@
                     targetDeviceWidth: attrs[28],
                     baseViewportWidth: attrs[29],
                     targetViewportWidth: attrs[30],
-                    xpath: attrs[31]
+                    xpath: attrs[31],
+                    baseXpath: attrs[32],
+                    targetXpath: attrs[33],
+                    phash: attrs[34],
+					basePreviousSiblingLeft: attrs[35],
+					targetPreviousSiblingLeft: attrs[36],
+					basePreviousSiblingTop: attrs[37],
+					targetPreviousSiblingTop: attrs[38],
+					baseNextSiblingLeft: attrs[39],
+					targetNextSiblingLeft: attrs[40],
+					baseNextSiblingTop: attrs[41],
+					targetNextSiblingTop: attrs[42],
+					baseTextNodes: attrs[43],
+					targetTextNodes: attrs[44],
+					baseFontFamily: attrs[45],
+					targetFontFamily: attrs[46]
                 };
             };
         }());
@@ -59,7 +73,7 @@
             positionBase.className = "position";
             positionBase.style.position = "absolute";
             positionBase.style.backgroundColor = "red";
-            positionBase.style.opacity = "0.3";
+            positionBase.style.opacity = "0.9";
             positionBase.style.top = (parseInt(elements[count].baseY)) + "px";
             positionBase.style.left = (parseInt(elements[count].baseX)) + "px";
             positionBase.style.height = elements[count].baseHeight + "px";
@@ -70,7 +84,7 @@
             positionTarget.className = "position";
             positionTarget.style.position = "absolute";
             positionTarget.style.backgroundColor = "red";
-            positionTarget.style.opacity = "0.3";
+            positionTarget.style.opacity = "0.9";
             positionTarget.style.top = (parseInt(elements[count].targetY)) + "px";
             positionTarget.style.left = (parseInt(elements[count].targetX)) + "px";
             positionTarget.style.height = elements[count].targetHeight + "px";
@@ -84,9 +98,12 @@
                 var imgBase = document.createElement("img"),
                     imgTarget = document.createElement("img"),
                     baseContainer = document.createElement("div"),
-                    targetContainer = document.createElement("div");
-                imgBase.src = filename.split('-')[0] + "/complete.png";
-                imgTarget.src = filename.split('-')[1].split('.')[0] + "/complete.png";
+                    targetContainer = document.createElement("div"),
+                    i = 0, j = 0;
+                while(elements[i].baseScreenshot == 'null') {i++;}
+                while(elements[j].targetScreenshot == 'null') j++;
+                imgBase.src = elements[i].baseScreenshot.split("/")[1] + "/complete.png";
+                imgTarget.src = elements[j].targetScreenshot.split("/")[1] + "/complete.png";
                 baseContainer.appendChild(imgBase);
                 targetContainer.appendChild(imgTarget);
                 screenshots.innerHTML = "";
@@ -101,29 +118,7 @@
                 container.innerHTML = "";
                 container.appendChild(imgBase);
                 container.appendChild(imgTarget);
-                cursor.innerHTML = count + " - " + imgBase.src;
-
-                if (row_tr)
-                    table.removeChild(row_tr);
-                row_tr = document.createElement("tr");
-                row_tr.className = "row";
-                row_tr.innerHTML = "<td>" + (elements[count].baseX) + "</td>" +
-                                   "<td>" + (elements[count].targetX) + "</td>" +
-                                   "<td>" + (elements[count].baseY) + "</td>" +
-                                   "<td>" + (elements[count].targetY) + "</td>" +
-                                   "<td>" + (elements[count].baseHeight) + "</td>" +
-                                   "<td>" + (elements[count].targetHeight) + "</td>" +
-                                   "<td>" + (elements[count].baseWidth) + "</td>" +
-                                   "<td>" + (elements[count].targetWidth) + "</td>" +
-
-                                   "<td>" + (parseInt(elements[count].baseX) - parseInt(elements[count].targetX)) + "</td>" +
-                                   "<td>" + (parseInt(elements[count].baseY) - parseInt(elements[count].targetY)) + "</td>" +
-                                   "<td>" + (parseInt(elements[count].baseHeight) - parseInt(elements[count].targetHeight)) + "</td>" +
-                                   "<td>" + (parseInt(elements[count].baseWidth) - parseInt(elements[count].targetWidth)) + "</td>" +
-                                   "<td>" + (elements[count].imageDiff) + "</td>" +
-                                   "<td>" + (elements[count].basePlatform != 'null') + "</td>" +
-                                   "<td>" + (elements[count].targetPlatform != 'null') + "</td>";
-                table.appendChild(row_tr);
+                cursor.innerHTML = count;
 
                 paintPosition();
 
@@ -176,6 +171,21 @@
                               elements[i].baseViewportWidth + "," +
                               elements[i].targetViewportWidth + "," +
                               elements[i].xpath + "," +
+                              elements[i].baseXpath + "," +
+                              elements[i].targetXpath + "," +
+                              elements[i].phash + "," +
+							  elements[i].basePreviousSiblingLeft + "," +
+							  elements[i].targetPreviousSiblingLeft + "," +
+							  elements[i].basePreviousSiblingTop + "," +
+							  elements[i].targetPreviousSiblingTop + "," +
+							  elements[i].baseNextSiblingLeft + "," +
+							  elements[i].targetNextSiblingLeft + "," +
+							  elements[i].baseNextSiblingTop + "," +
+							  elements[i].targetNextSiblingTop + "," +
+							  elements[i].baseTextNodes + "," +
+							  elements[i].targetTextNodes + "," +
+							  elements[i].baseFontFamily + "," +
+							  elements[i].targetFontFamily + "," +
                               elements[i].Result;
                     r += row + "\n"
                 };
@@ -188,8 +198,6 @@
         classifier = document.querySelector("#classifier"),
         container = document.querySelector("#container"),
         cursor = document.querySelector("#cursor"),
-        table = document.querySelector("table"),
-        row_tr = document.querySelector("table .row"),
         screenshots = document.querySelector(".screenshots"),
         conclude = document.querySelector("button"),
         report = document.querySelector("#report");
@@ -197,7 +205,7 @@
         var self = this,
             reader = new FileReader();
         reader.onload = function (e) {
-            var n = Navigator(reader.result, screenshots, container, cursor, self.files[0].name);
+            var n = Navigator(reader.result, screenshots, container, cursor);
             n.loadImage();
             n.getCurrent();
             classifier.addEventListener("keyup", function (ev) {
