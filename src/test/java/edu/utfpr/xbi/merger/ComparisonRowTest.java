@@ -47,12 +47,18 @@ public class ComparisonRowTest {
                         "@ATTRIBUTE baseXpath STRING\n" +
                         "@ATTRIBUTE targetXpath STRING\n" +
                         "@ATTRIBUTE phash NUMERIC\n" +
-                        "@ATTRIBUTE previousSiblingLeft NUMERIC\n" +
-                        "@ATTRIBUTE previousSiblingTop NUMERIC\n" +
-                        "@ATTRIBUTE nextSiblingLeft NUMERIC\n" +
-                        "@ATTRIBUTE nextSiblingTop NUMERIC\n" +
-                        "@ATTRIBUTE textNodes NUMERIC\n" +
-                        "@ATTRIBUTE fontFamily STRING\n" +
+                        "@ATTRIBUTE basePreviousSiblingLeft NUMERIC\n" +
+                        "@ATTRIBUTE targetPreviousSiblingLeft NUMERIC\n" +
+                        "@ATTRIBUTE basePreviousSiblingTop NUMERIC\n" +
+                        "@ATTRIBUTE targetPreviousSiblingTop NUMERIC\n" +
+                        "@ATTRIBUTE baseNextSiblingLeft NUMERIC\n" +
+                        "@ATTRIBUTE targetNextSiblingLeft NUMERIC\n" +
+                        "@ATTRIBUTE baseNextSiblingTop NUMERIC\n" +
+                        "@ATTRIBUTE targetNextSiblingTop NUMERIC\n" +
+                        "@ATTRIBUTE baseTextNodes NUMERIC\n" +
+                        "@ATTRIBUTE targetTextNodes NUMERIC\n" +
+                        "@ATTRIBUTE baseFontFamily STRING\n" +
+                        "@ATTRIBUTE targetFontFamily STRING\n" +
                         "@DATA";
         assertEquals(header, ComparisonRow.header());
     }
