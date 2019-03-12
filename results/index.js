@@ -100,7 +100,7 @@
                     baseContainer = document.createElement("div"),
                     targetContainer = document.createElement("div"),
                     i = 0, j = 0;
-                while(elements[i].baseScreenshot == 'null') {i++;}
+                while(elements[i].baseScreenshot == 'null') {i++; console.log(i); console.log(elements[i]); }
                 while(elements[j].targetScreenshot == 'null') j++;
                 imgBase.src = elements[i].baseScreenshot.split("/")[1] + "/complete.png";
                 imgTarget.src = elements[j].targetScreenshot.split("/")[1] + "/complete.png";
