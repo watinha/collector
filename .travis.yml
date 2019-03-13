@@ -4,6 +4,5 @@ services:
 
 before_install:
     - docker build -t travis/collector .
-    - docker run travis/collector
 
-script: mvn compile test
+script: docker run travis/collector
