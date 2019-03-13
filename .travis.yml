@@ -1,7 +1,4 @@
 services:
     - docker
 
-before_install:
-    - docker build -t travis/collector .
-
-script: docker run travis/collector
+script: docker run --mount type=bind,source=$(pwd),target=/app,consistency=consistent travis/collector mvn clean compile test
