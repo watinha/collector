@@ -1,6 +1,6 @@
 Collector
 =========
-[![Build Status](https://api.travis-ci.org/watinha/collector.svg?branch=master)](https://travis-ci.com/watinha/collector)
+[![Build Status](https://api.travis-ci.org/watinha/collector.svg?branch=master)](https://travis-ci.org/watinha/collector)
 The Collector is a crawler script developed for collecting data associated to DOM elements in web applications.
 Its goal is to collect data of DOM elements as rendered in different browsers and platforms, then build a comparison file in ARFF format.
 This ARFF file can be used for classifying DOM elements which present incompatibilities when rendered in a specific browser/platform.
