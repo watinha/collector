@@ -1,3 +1,4 @@
 *.swp
 target/*
 .DS_Store
+log/*
