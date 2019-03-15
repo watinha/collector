@@ -7,9 +7,9 @@
 
         (function () {
             var lines = file.split("\n");
-            for (var i = 43; i < lines.length; i++) {
+            for (var i = 49; i < lines.length; i++) {
                 var attrs = lines[i].split(",");
-                elements[i - 43] = {
+                elements[i - 49] = {
                     url: attrs[0],
                     id: attrs[1],
                     tagName: attrs[2],
