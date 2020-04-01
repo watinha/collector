@@ -20,13 +20,13 @@ public class Collector {
         // *** MOBILE ***
         list.add(BrowserConfigurations.motoG4("http://host.docker.internal:4723/wd/hub/", header, -1));
         //list.add(BrowserConfigurations.motoZ2("http://192.168.92.1:4723/wd/hub/", header, -1));
-        list.add(BrowserConfigurations.iphone8plus("http://host.docker.internal:4723/wd/hub/", header, -1));
+        //list.add(BrowserConfigurations.iphone8plus("http://host.docker.internal:4723/wd/hub/", header, -1));
         list.add(BrowserConfigurations.iphone8("http://host.docker.internal:4723/wd/hub/", header, -1));
-        list.add(BrowserConfigurations.iphoneSE("http://host.docker.internal:4723/wd/hub/", header, -1));
+        //list.add(BrowserConfigurations.iphoneSE("http://host.docker.internal:4723/wd/hub/", header, -1));
         // *** DESKTOP ***
         //list.add(BrowserConfigurations.safari("http://192.168.92.1:4444/wd/hub/", 0, -1));
         //list.add(BrowserConfigurations.chromeMac("http://192.168.92.1:4444/wd/hub/", header, -1));
-        //list.add(BrowserConfigurations.firefoxMac("http://192.168.92.1:4444/wd/hub/", header, -1));
+        //list.add(BrowserConfigurations.firefoxMac("http://host.docker.internal:4444/wd/hub/", header, -1));
         //list.add(BrowserConfigurations.chromeWin("http://192.168.0.17:4444/wd/hub", header, -1));
         //list.add(BrowserConfigurations.firefoxWin("http://192.168.0.17:4444/wd/hub", header, -1));
         //list.add(BrowserConfigurations.ie("http://192.168.0.17:4444/wd/hub", header, -1));

@@ -69,8 +69,9 @@ public class BrowserConfigurations {
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("deviceName", "Android Emulator");
         capabilities.setCapability("browserName", "Chrome");
+        capabilities.setCapability("nativeWebScreenshot", true);
 		return new MobileBrowser(capabilities, appium_uri, "results/motog4/",
-							 header, "Android - MotoG4", new WebDriverCoordsProvider(), -1f);
+							 header + 82, "Android - MotoG4", new WebDriverCoordsProvider(), -1f);
     }
 
 	public static Browsers motoZ2(String appium_uri, int header, float dpr)
@@ -89,10 +90,10 @@ public class BrowserConfigurations {
 		capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("deviceName", "iPhone SE");
         capabilities.setCapability("browserName", "Safari");
-        capabilities.setCapability("platformVersion", "12.1");
-        capabilities.setCapability("automationName", "XCUITest");
+        capabilities.setCapability("platformVersion", "13.1");
+        //capabilities.setCapability("automationName", "XCUITest");
         //capabilities.setCapability("wdaLocalPort", "8102");
-        capabilities.setCapability("udid", "D2EE345E-342C-49AE-A91A-4F6B0C02A35F");
+        //capabilities.setCapability("udid", "D2EE345E-342C-49AE-A91A-4F6B0C02A35F");
 		return new MobileBrowser(capabilities, appium_uri, "results/iphonese/",
 							 header + 70, "iOS - iPhoneSE", new JqueryCoordsProvider(), 2.0f);
     }
@@ -103,10 +104,10 @@ public class BrowserConfigurations {
 		capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("deviceName", "iPhone 8");
         capabilities.setCapability("browserName", "Safari");
-        capabilities.setCapability("platformVersion", "12.1");
-        capabilities.setCapability("automationName", "XCUITest");
+        capabilities.setCapability("platformVersion", "13.1");
+        //capabilities.setCapability("automationName", "XCUITest");
         //capabilities.setCapability("wdaLocalPort", "8101");
-        capabilities.setCapability("udid", "CD726EF1-3A29-4EC0-A463-A7BD5FCC654B");
+        //capabilities.setCapability("udid", "CD726EF1-3A29-4EC0-A463-A7BD5FCC654B");
 		return new MobileBrowser(capabilities, appium_uri, "results/iphone8/",
 							 header + 70, "iOS - iPhone 8", new JqueryCoordsProvider(), 2.0f);
     }
@@ -117,10 +118,10 @@ public class BrowserConfigurations {
 		capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("deviceName", "iPhone 8 Plus");
         capabilities.setCapability("browserName", "Safari");
-        capabilities.setCapability("platformVersion", "12.1");
-        capabilities.setCapability("automationName", "XCUITest");
+        capabilities.setCapability("platformVersion", "13.1");
+        //capabilities.setCapability("automationName", "XCUITest");
         //capabilities.setCapability("wdaLocalPort", "8100");
-        capabilities.setCapability("udid", "0AAAF7EC-9608-4F27-A604-B4FFA584C011");
+        //capabilities.setCapability("udid", "0AAAF7EC-9608-4F27-A604-B4FFA584C011");
 		return new MobileBrowser(capabilities, appium_uri, "results/iphone8plus/",
 							 header + 70, "iOS - iPhone 8 Plus", new JqueryCoordsProvider(), dpr);
     }
