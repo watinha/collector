@@ -53,7 +53,7 @@ public class MobileBrowser implements Browsers {
 		this.header = header;
 		this.device = device;
 		this.provider = provider;
-        this.dpr = dpr;
+    this.dpr = dpr;
 	}
 
 	public BrowserCollector createCollector (String url) throws Exception {
@@ -66,6 +66,8 @@ public class MobileBrowser implements Browsers {
         driver.get(url);
 
         Thread.sleep(7000);
+        executor.executeScript(
+            "window.$ = undefined; window.jQuery = undefined;");
         executor.executeScript(IOUtils.toString(Thread.currentThread().getContextClassLoader()
                     .getResourceAsStream("js/jquery.js"), StandardCharsets.UTF_8));
         executor.executeScript(IOUtils.toString(Thread.currentThread().getContextClassLoader()
@@ -90,6 +92,7 @@ public class MobileBrowser implements Browsers {
         System.out.println(deviceWidth);
         System.out.println(viewportWidth);
         System.out.println(dpr);
+
         executor.executeScript(
             "return (function () {" +
             "    var all = document.querySelectorAll(\"*\");" +

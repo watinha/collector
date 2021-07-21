@@ -74,6 +74,30 @@ public class BrowserConfigurations {
 							 header + 82, "Android - MotoG4", new WebDriverCoordsProvider(), -1f);
     }
 
+	public static Browsers pixel_xl(String appium_uri, int header, float dpr)
+			throws Exception {
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability("deviceName", "pixel_xl");
+        capabilities.setCapability("browserName", "Chrome");
+        capabilities.setCapability("automationName", "UiAutomator2");
+        capabilities.setCapability("nativeWebScreenshot", true);
+		return new MobileBrowser(capabilities, appium_uri, "results/pixel_xl/",
+							 header + 82, "Android API28 - Pixel", new WebDriverCoordsProvider(), -1f);
+    }
+
+	public static Browsers pixel(String appium_uri, int header, float dpr)
+			throws Exception {
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability("deviceName", "pixel");
+        capabilities.setCapability("browserName", "Chrome");
+        capabilities.setCapability("automationName", "UiAutomator2");
+        capabilities.setCapability("nativeWebScreenshot", true);
+		return new MobileBrowser(capabilities, appium_uri, "results/pixel/",
+							 header + 82, "Android API28 - Pixel", new WebDriverCoordsProvider(), -1f);
+    }
+
 	public static Browsers motoZ2(String appium_uri, int header, float dpr)
 			throws Exception {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -124,6 +148,57 @@ public class BrowserConfigurations {
         //capabilities.setCapability("udid", "0AAAF7EC-9608-4F27-A604-B4FFA584C011");
 		return new MobileBrowser(capabilities, appium_uri, "results/iphone8plus/",
 							 header + 70, "iOS - iPhone 8 Plus", new JqueryCoordsProvider(), dpr);
+    }
+
+    public static Browsers iphone12max (String appium_uri, int header, float dpr)
+            throws Exception {
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("deviceName", "iPhone 12 Pro Max");
+        capabilities.setCapability("browserName", "Safari");
+        capabilities.setCapability("platformVersion", "14.5");
+        capabilities.setCapability("automationName", "XCUITest");
+        capabilities.setCapability("appium:noReset", true);
+        //capabilities.setCapability("appium:useNewWDA", true);
+        capabilities.setCapability("appium:usePrebuiltWDA", true);
+        capabilities.setCapability("appium:wdaLocalPort", 8101);
+        //capabilities.setCapability("udid", "CD726EF1-3A29-4EC0-A463-A7BD5FCC654B");
+		return new MobileBrowser(capabilities, appium_uri, "results/iphone12max/",
+							 header + 100, "iOS 14.5 - iPhone 12 Pro Max", new JqueryCoordsProvider(), 3.0f);
+    }
+
+    public static Browsers iphone12 (String appium_uri, int header, float dpr)
+            throws Exception {
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("deviceName", "iPhone 12");
+        capabilities.setCapability("browserName", "Safari");
+        capabilities.setCapability("platformVersion", "14.5");
+        capabilities.setCapability("automationName", "XCUITest");
+        capabilities.setCapability("appium:noReset", true);
+        //capabilities.setCapability("appium:useNewWDA", true);
+        capabilities.setCapability("appium:usePrebuiltWDA", true);
+        capabilities.setCapability("wdaLocalPort", 8102);
+        //capabilities.setCapability("udid", "CD726EF1-3A29-4EC0-A463-A7BD5FCC654B");
+		return new MobileBrowser(capabilities, appium_uri, "results/iphone12/",
+							 header + 100, "iOS 14.5 - iPhone 12", new JqueryCoordsProvider(), 3.0f);
+    }
+
+    public static Browsers iphone12mini (String appium_uri, int header, float dpr)
+            throws Exception {
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("deviceName", "iPhone 12 mini");
+        capabilities.setCapability("browserName", "Safari");
+        capabilities.setCapability("platformVersion", "14.5");
+        capabilities.setCapability("automationName", "XCUITest");
+        capabilities.setCapability("appium:noReset", true);
+        //capabilities.setCapability("appium:useNewWDA", true);
+        capabilities.setCapability("appium:usePrebuiltWDA", true);
+        capabilities.setCapability("wdaLocalPort", 8103);
+        //capabilities.setCapability("udid", "CD726EF1-3A29-4EC0-A463-A7BD5FCC654B");
+		return new MobileBrowser(capabilities, appium_uri, "results/iphone12mini/",
+							 header + 100, "iOS 14.5 - iPhone 12 mini", new JqueryCoordsProvider(), 3.0f);
     }
 
     public static Browsers ipadAir2 (String appium_uri, int header, float dpr)
