@@ -55,7 +55,24 @@ public class JSCodes {
         "    dpi = arguments[5]," +
         "    index = arguments[6]," +
         "    max = window.elements.length;" +
+
+        "function offset (el) { " +
+        "    const rect = el.getBoundingClientRect(), " +
+        "          win = el.ownerDocument.defaultView; " +
+        "    return { " +
+        "        top: rect.top + win.pageYOffset, " +
+        "        left: rect.left + win.pageXOffset " +
+        "    }; " +
+        "} " +
+        "function dimension (el) { " +
+        "    return { " +
+        "        height: (el.offsetHeight ? el.offsetHeight : 0), " +
+        "        width: (el.offsetWidth ? el.offsetWidth : 0) " +
+        "    }; " +
+        "} " +
+
         "function getXPath (target) {" +
+        "   return '';" +
         "   var xpath = '', tagName, parent = target.parentElement," +
         "       index, children;" +
         "   while (parent != null) {" +
@@ -94,25 +111,25 @@ public class JSCodes {
                            "tagName !== 'STYLE' && " +
                            "tagName !== 'LINK' && " +
                            "tagName !== 'NOSCRIPT' && " +
-                           "parseInt($(target).outerWidth()) !== 0 && " +
-                           "parseInt($(target).outerHeight()) !== 0 && " +
-                           "parseInt($(target).outerWidth() + $(target).offset().left) > 0 && " +
-                           "parseInt($(target).offset().left) < viewportWidth && " +
-                           "target.isVisible()) {" +
+                           "parseInt(dimension(target).width) !== 0 && " +
+                           "parseInt(dimension(target).height) !== 0 && " +
+                           "parseInt(dimension(target).width + offset(target).left) > 0 && " +
+                           "parseInt(offset(target).left) < viewportWidth) { " +
+                           //"target.isVisible()) {" +
         "       var row = path + ',' + url + ',' + i + ',' + target.tagName + ',' + browser + ',' +" +
-        "           parseInt($(target).offset().left) + ',' + " +
-        "           parseInt($(target).offset().top) + ',' + " +
-        "           parseInt($(target).outerHeight()) + ',' + " +
-        "           parseInt($(target).outerWidth()) + ',' + " +
-        "           parseInt($(parent).offset().left) + ',' + " +
-        "           parseInt($(parent).offset().top) + ',' + " +
+        "           parseInt(offset(target).left) + ',' + " +
+        "           parseInt(offset(target).top) + ',' + " +
+        "           parseInt(dimension(target).height) + ',' + " +
+        "           parseInt(dimension(target).width) + ',' + " +
+        "           parseInt(offset(parent).left) + ',' + " +
+        "           parseInt(offset(parent).top) + ',' + " +
         "           deviceWidth + ',' + viewportWidth + ',' + dpi + ',' + " +
         "           (target.querySelectorAll('*').length) + ',' + " +
         "           target.innerHTML.length + ',' + getXPath(target) + ',' + " +
-        "           (previous_sibling ? parseInt($(previous_sibling).offset().left) : 0) + ',' + " +
-        "           (previous_sibling ? parseInt($(previous_sibling).offset().top) : 0) + ',' + " +
-        "           (next_sibling ? parseInt($(next_sibling).offset().left) : 0) + ',' + " +
-        "           (next_sibling ? parseInt($(next_sibling).offset().top) : 0) + ',' + " +
+        "           (previous_sibling ? parseInt(offset(previous_sibling).left) : 0) + ',' + " +
+        "           (previous_sibling ? parseInt(offset(previous_sibling).top) : 0) + ',' + " +
+        "           (next_sibling ? parseInt(offset(next_sibling).left) : 0) + ',' + " +
+        "           (next_sibling ? parseInt(offset(next_sibling).top) : 0) + ',' + " +
         "           text_nodes + ',' + " +
         "           font_family;" +
         "       window.rows.push(row);" +
