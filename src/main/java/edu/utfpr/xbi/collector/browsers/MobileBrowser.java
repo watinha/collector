@@ -65,13 +65,13 @@ public class MobileBrowser implements Browsers {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         driver.get(url);
 
-        Thread.sleep(7000);
-        executor.executeScript(
-            "window.$ = undefined; window.jQuery = undefined;");
-        executor.executeScript(IOUtils.toString(Thread.currentThread().getContextClassLoader()
-                    .getResourceAsStream("js/jquery.js"), StandardCharsets.UTF_8));
-        executor.executeScript(IOUtils.toString(Thread.currentThread().getContextClassLoader()
-                    .getResourceAsStream("js/visibility.js"), StandardCharsets.UTF_8));
+        Thread.sleep(5000);
+        //executor.executeScript(
+        //    "window.$ = undefined; window.jQuery = undefined;");
+        //executor.executeScript(IOUtils.toString(Thread.currentThread().getContextClassLoader()
+        //            .getResourceAsStream("js/jquery.js"), StandardCharsets.UTF_8));
+        //executor.executeScript(IOUtils.toString(Thread.currentThread().getContextClassLoader()
+        //            .getResourceAsStream("js/visibility.js"), StandardCharsets.UTF_8));
 
         Thread.sleep(3000);
 

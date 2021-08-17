@@ -72,7 +72,6 @@ public class JSCodes {
         "} " +
 
         "function getXPath (target) {" +
-        "   return '';" +
         "   var xpath = '', tagName, parent = target.parentElement," +
         "       index, children;" +
         "   while (parent != null) {" +
