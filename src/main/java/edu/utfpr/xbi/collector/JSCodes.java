@@ -72,17 +72,23 @@ public class JSCodes {
         "} " +
 
         "function getXPath (target) {" +
-        "   var xpath = '', tagName, parent = target.parentElement," +
+        "   var xpath = '', tagName = target.tagName.toLowerCase(), parent = target.parentElement," +
         "       index, children;" +
-        "   while (parent != null) {" +
-        "       tagName = target.tagName.toLowerCase();" +
-        "       children = [].slice.call(parent.children);" +
-        "       index = children.indexOf(target) + 1;" +
-        "       xpath = '/' + tagName + '[' + index + ']' + xpath;" +
-        "       target = parent;" +
-        "       parent = target.parentElement;" +
-        "   };" +
-        "   return xpath;" +
+        "   if (target.xpath_absolute) return target.xpath_absolute;" +
+        "   if (parent === null) return '';" +
+        "   children = [].slice.call(parent.children);" +
+        "   index = children.indexOf(target) + 1;" +
+        "   target.xpath_absolute = getXPath(parent) + `/${tagName}[${index}]`;" +
+        "   return target.xpath_absolute;" +
+        //"   while (parent != null) {" +
+        //"       tagName = target.tagName.toLowerCase();" +
+        //"       children = [].slice.call(parent.children);" +
+        //"       index = children.indexOf(target) + 1;" +
+        //"       xpath = '/' + tagName + '[' + index + ']' + xpath;" +
+        //"       target = parent;" +
+        //"       parent = target.parentElement;" +
+        //"   };" +
+        //"   return xpath;" +
         "}" +
         "window.rows = [];" +
         "for (var i = (max - 1); i >= 0; i--){" +
@@ -113,8 +119,8 @@ public class JSCodes {
                            "parseInt(dimension(target).width) !== 0 && " +
                            "parseInt(dimension(target).height) !== 0 && " +
                            "parseInt(dimension(target).width + offset(target).left) > 0 && " +
-                           "parseInt(offset(target).left) < viewportWidth) { " +
-                           //"target.isVisible()) {" +
+                           "parseInt(offset(target).left) < viewportWidth && " +
+                           "target.isVisible()) {" +
         "       var row = path + ',' + url + ',' + i + ',' + target.tagName + ',' + browser + ',' +" +
         "           parseInt(offset(target).left) + ',' + " +
         "           parseInt(offset(target).top) + ',' + " +

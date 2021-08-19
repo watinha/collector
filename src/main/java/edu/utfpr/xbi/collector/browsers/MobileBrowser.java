@@ -70,8 +70,8 @@ public class MobileBrowser implements Browsers {
         //    "window.$ = undefined; window.jQuery = undefined;");
         //executor.executeScript(IOUtils.toString(Thread.currentThread().getContextClassLoader()
         //            .getResourceAsStream("js/jquery.js"), StandardCharsets.UTF_8));
-        //executor.executeScript(IOUtils.toString(Thread.currentThread().getContextClassLoader()
-        //            .getResourceAsStream("js/visibility.js"), StandardCharsets.UTF_8));
+        executor.executeScript(IOUtils.toString(Thread.currentThread().getContextClassLoader()
+                .getResourceAsStream("js/visibility.js"), StandardCharsets.UTF_8));
 
         Thread.sleep(3000);
 
